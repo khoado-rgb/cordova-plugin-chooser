@@ -2,8 +2,8 @@
 <plugin 
 	xmlns="http://www.phonegap.com/ns/plugins/1.0" 
 	xmlns:android="http://schemas.android.com/apk/res/android" 
-	id="cordova-plugin-chooser" 
-	version="1.2.5"
+	id="com.lowcode.outsystems.chooser" 
+	version="2.0.0"
 >	
 	<name>Chooser</name>
 	<author>Cyph, Inc.</author>
@@ -13,22 +13,24 @@
 	</js-module>
 
 	<platform name="android">
-		<source-file src="src/android/Chooser.java" target-dir="src/com/cyph/cordova" />
+		<source-file src="src/android/LowcodeChooser.java" target-dir="src/com/lowcode/outsystems/chooser" />
 
 		<config-file target="config.xml" parent="/*">
-			<feature name="Chooser">
-				<param name="android-package" value="com.cyph.cordova.Chooser" />
+			<feature name="LowcodeChooser">
+				<param name="android-package" value="com.lowcode.outsystems.chooser.LowcodeChooser" />
 			</feature>
 		</config-file>
 	</platform>
 
 	<platform name="ios">
-		<source-file src="src/ios/Chooser.swift" />
+		<source-file src="src/ios/LowcodeChooser.swift" />
+		<!-- iOS 14+ only; weak so apps with a lower deployment target still launch on older iOS. -->
+		<framework src="UniformTypeIdentifiers.framework" weak="true" />
 		<!--<dependency id="cordova-plugin-add-swift-support" version="*" />-->
 
 		<config-file target="config.xml" parent="/*">
-			<feature name="Chooser">
-				<param name="ios-package" value="Chooser" />
+			<feature name="LowcodeChooser">
+				<param name="ios-package" value="LowcodeChooser" />
 			</feature>
 		</config-file>
 	</platform>
