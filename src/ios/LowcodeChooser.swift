@@ -76,9 +76,12 @@ class LowcodeChooser : CDVPlugin {
 	/// Presenting from a view controller that is already presenting something fails silently,
 	/// which would leave the promise pending forever.
 	func topViewController () -> UIViewController? {
-		guard var top = self.viewController, top.view.window != nil else {
+		// Upcast: some cordova-ios versions type viewController as CDVViewController,
+		// which would make `top` reject the presented UIViewController below.
+		guard let root = self.viewController as UIViewController?, root.view.window != nil else {
 			return nil
 		}
+		var top = root
 		while let presented = top.presentedViewController, !presented.isBeingDismissed {
 			top = presented
 		}
